@@ -1,0 +1,434 @@
+[
+  {
+      "Timestamp": 20230718135900,
+      "Threshold": 6000,
+      "PicksPerMin": 0,
+      "TotalPicks": 0
+  },
+  {
+      "Timestamp": 20230718140000,
+      "Threshold": 6000,
+      "PicksPerMin": 4,
+      "TotalPicks": 4
+  },
+  {
+      "Timestamp": 20230718140100,
+      "Threshold": 6000,
+      "PicksPerMin": 5,
+      "TotalPicks": 9
+  },
+  {
+      "Timestamp": 20230718140200,
+      "Threshold": 6000,
+      "PicksPerMin": 4,
+      "TotalPicks": 13
+  },
+  {
+      "Timestamp": 20230718140300,
+      "Threshold": 6000,
+      "PicksPerMin": 6,
+      "TotalPicks": 19
+  },
+  {
+      "Timestamp": 20230718140400,
+      "Threshold": 6000,
+      "PicksPerMin": 9,
+      "TotalPicks": 28
+  },
+  {
+      "Timestamp": 20230718140500,
+      "Threshold": 6000,
+      "PicksPerMin": 23,
+      "TotalPicks": 51
+  },
+  {
+      "Timestamp": 20230718140600,
+      "Threshold": 6000,
+      "PicksPerMin": 28,
+      "TotalPicks": 79
+  },
+  {
+      "Timestamp": 20230718140700,
+      "Threshold": 6000,
+      "PicksPerMin": 24,
+      "TotalPicks": 103
+  },
+  {
+      "Timestamp": 20230718140800,
+      "Threshold": 6000,
+      "PicksPerMin": 22,
+      "TotalPicks": 125
+  },
+  {
+      "Timestamp": 20230718140900,
+      "Threshold": 6000,
+      "PicksPerMin": 30,
+      "TotalPicks": 155
+  },
+  {
+      "Timestamp": 20230718141000,
+      "Threshold": 6000,
+      "PicksPerMin": 31,
+      "TotalPicks": 186
+  },
+  {
+      "Timestamp": 20230718141100,
+      "Threshold": 6000,
+      "PicksPerMin": 31,
+      "TotalPicks": 217
+  },
+  {
+      "Timestamp": 20230718141200,
+      "Threshold": 6000,
+      "PicksPerMin": 34,
+      "TotalPicks": 251
+  },
+  {
+      "Timestamp": 20230718141300,
+      "Threshold": 6000,
+      "PicksPerMin": 34,
+      "TotalPicks": 285
+  },
+  {
+      "Timestamp": 20230718141400,
+      "Threshold": 6000,
+      "PicksPerMin": 36,
+      "TotalPicks": 321
+  },
+  {
+      "Timestamp": 20230718141500,
+      "Threshold": 6000,
+      "PicksPerMin": 27,
+      "TotalPicks": 348
+  },
+  {
+      "Timestamp": 20230718141600,
+      "Threshold": 6000,
+      "PicksPerMin": 32,
+      "TotalPicks": 380
+  },
+  {
+      "Timestamp": 20230718141700,
+      "Threshold": 6000,
+      "PicksPerMin": 36,
+      "TotalPicks": 416
+  },
+  {
+      "Timestamp": 20230718141800,
+      "Threshold": 6000,
+      "PicksPerMin": 49,
+      "TotalPicks": 465
+  },
+  {
+      "Timestamp": 20230718141900,
+      "Threshold": 6000,
+      "PicksPerMin": 39,
+      "TotalPicks": 504
+  },
+  {
+      "Timestamp": 20230718142000,
+      "Threshold": 6000,
+      "PicksPerMin": 37,
+      "TotalPicks": 541
+  },
+  {
+      "Timestamp": 20230718142100,
+      "Threshold": 6000,
+      "PicksPerMin": 33,
+      "TotalPicks": 574
+  },
+  {
+      "Timestamp": 20230718142200,
+      "Threshold": 6000,
+      "PicksPerMin": 32,
+      "TotalPicks": 606
+  },
+  {
+      "Timestamp": 20230718142300,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 641
+  },
+  {
+      "Timestamp": 20230718142400,
+      "Threshold": 6000,
+      "PicksPerMin": 37,
+      "TotalPicks": 678
+  },
+  {
+      "Timestamp": 20230718142500,
+      "Threshold": 6000,
+      "PicksPerMin": 36,
+      "TotalPicks": 714
+  },
+  {
+      "Timestamp": 20230718142600,
+      "Threshold": 6000,
+      "PicksPerMin": 37,
+      "TotalPicks": 751
+  },
+  {
+      "Timestamp": 20230718142700,
+      "Threshold": 6000,
+      "PicksPerMin": 39,
+      "TotalPicks": 790
+  },
+  {
+      "Timestamp": 20230718142800,
+      "Threshold": 6000,
+      "PicksPerMin": 36,
+      "TotalPicks": 826
+  },
+  {
+      "Timestamp": 20230718142900,
+      "Threshold": 6000,
+      "PicksPerMin": 38,
+      "TotalPicks": 864
+  },
+  {
+      "Timestamp": 20230718143000,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 899
+  },
+  {
+      "Timestamp": 20230718143100,
+      "Threshold": 6000,
+      "PicksPerMin": 43,
+      "TotalPicks": 942
+  },
+  {
+      "Timestamp": 20230718143200,
+      "Threshold": 6000,
+      "PicksPerMin": 38,
+      "TotalPicks": 980
+  },
+  {
+      "Timestamp": 20230718143300,
+      "Threshold": 6000,
+      "PicksPerMin": 32,
+      "TotalPicks": 1012
+  },
+  {
+      "Timestamp": 20230718143400,
+      "Threshold": 6000,
+      "PicksPerMin": 43,
+      "TotalPicks": 1055
+  },
+  {
+      "Timestamp": 20230718143500,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 1090
+  },
+  {
+      "Timestamp": 20230718143600,
+      "Threshold": 6000,
+      "PicksPerMin": 34,
+      "TotalPicks": 1124
+  },
+  {
+      "Timestamp": 20230718143700,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 1159
+  },
+  {
+      "Timestamp": 20230718143800,
+      "Threshold": 6000,
+      "PicksPerMin": 29,
+      "TotalPicks": 1188
+  },
+  {
+      "Timestamp": 20230718143900,
+      "Threshold": 6000,
+      "PicksPerMin": 24,
+      "TotalPicks": 1212
+  },
+  {
+      "Timestamp": 20230718144000,
+      "Threshold": 6000,
+      "PicksPerMin": 32,
+      "TotalPicks": 1244
+  },
+  {
+      "Timestamp": 20230718144100,
+      "Threshold": 6000,
+      "PicksPerMin": 28,
+      "TotalPicks": 1272
+  },
+  {
+      "Timestamp": 20230718144200,
+      "Threshold": 6000,
+      "PicksPerMin": 28,
+      "TotalPicks": 1300
+  },
+  {
+      "Timestamp": 20230718144300,
+      "Threshold": 6000,
+      "PicksPerMin": 21,
+      "TotalPicks": 1321
+  },
+  {
+      "Timestamp": 20230718144400,
+      "Threshold": 6000,
+      "PicksPerMin": 30,
+      "TotalPicks": 1351
+  },
+  {
+      "Timestamp": 20230718144500,
+      "Threshold": 6000,
+      "PicksPerMin": 24,
+      "TotalPicks": 1375
+  },
+  {
+      "Timestamp": 20230718144600,
+      "Threshold": 6000,
+      "PicksPerMin": 22,
+      "TotalPicks": 1397
+  },
+  {
+      "Timestamp": 20230718144700,
+      "Threshold": 6000,
+      "PicksPerMin": 27,
+      "TotalPicks": 1424
+  },
+  {
+      "Timestamp": 20230718144800,
+      "Threshold": 6000,
+      "PicksPerMin": 31,
+      "TotalPicks": 1455
+  },
+  {
+      "Timestamp": 20230718144900,
+      "Threshold": 6000,
+      "PicksPerMin": 17,
+      "TotalPicks": 1472
+  },
+  {
+      "Timestamp": 20230718145000,
+      "Threshold": 6000,
+      "PicksPerMin": 22,
+      "TotalPicks": 1494
+  },
+  {
+      "Timestamp": 20230718145100,
+      "Threshold": 6000,
+      "PicksPerMin": 40,
+      "TotalPicks": 1534
+  },
+  {
+      "Timestamp": 20230718145200,
+      "Threshold": 6000,
+      "PicksPerMin": 45,
+      "TotalPicks": 1579
+  },
+  {
+      "Timestamp": 20230718145300,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 1614
+  },
+  {
+      "Timestamp": 20230718145400,
+      "Threshold": 6000,
+      "PicksPerMin": 34,
+      "TotalPicks": 1648
+  },
+  {
+      "Timestamp": 20230718145500,
+      "Threshold": 6000,
+      "PicksPerMin": 40,
+      "TotalPicks": 1688
+  },
+  {
+      "Timestamp": 20230718145600,
+      "Threshold": 6000,
+      "PicksPerMin": 41,
+      "TotalPicks": 1729
+  },
+  {
+      "Timestamp": 20230718145700,
+      "Threshold": 6000,
+      "PicksPerMin": 46,
+      "TotalPicks": 1775
+  },
+  {
+      "Timestamp": 20230718145800,
+      "Threshold": 6000,
+      "PicksPerMin": 41,
+      "TotalPicks": 1816
+  },
+  {
+      "Timestamp": 20230718145900,
+      "Threshold": 6000,
+      "PicksPerMin": 43,
+      "TotalPicks": 1859
+  },
+  {
+      "Timestamp": 20230718150000,
+      "Threshold": 6000,
+      "PicksPerMin": 38,
+      "TotalPicks": 1893
+  },
+  {
+      "Timestamp": 20230718150100,
+      "Threshold": 6000,
+      "PicksPerMin": 38,
+      "TotalPicks": 1926
+  },
+  {
+      "Timestamp": 20230718150200,
+      "Threshold": 6000,
+      "PicksPerMin": 46,
+      "TotalPicks": 1968
+  },
+  {
+      "Timestamp": 20230718150300,
+      "Threshold": 6000,
+      "PicksPerMin": 48,
+      "TotalPicks": 2010
+  },
+  {
+      "Timestamp": 20230718150400,
+      "Threshold": 6000,
+      "PicksPerMin": 38,
+      "TotalPicks": 2039
+  },
+  {
+      "Timestamp": 20230718150500,
+      "Threshold": 6000,
+      "PicksPerMin": 32,
+      "TotalPicks": 2048
+  },
+  {
+      "Timestamp": 20230718150600,
+      "Threshold": 6000,
+      "PicksPerMin": 35,
+      "TotalPicks": 2055
+  },
+  {
+      "Timestamp": 20230718150700,
+      "Threshold": 6000,
+      "PicksPerMin": 29,
+      "TotalPicks": 2060
+  },
+  {
+      "Timestamp": 20230718150800,
+      "Threshold": 6000,
+      "PicksPerMin": 25,
+      "TotalPicks": 2063
+  },
+  {
+      "Timestamp": 20230718150900,
+      "Threshold": 6000,
+      "PicksPerMin": 21,
+      "TotalPicks": 2054
+  },
+  {
+      "Timestamp": 20230718151000,
+      "Threshold": 6000,
+      "PicksPerMin": 0,
+      "TotalPicks": 2023
+  }
+]

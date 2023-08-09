@@ -1,0 +1,3 @@
+export const TIMESTAMP_HOUR = 3600000;
+
+export const TIMESTAMP_MINUTE = 60000;
