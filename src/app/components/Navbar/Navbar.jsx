@@ -7,9 +7,12 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
+import { navItems } from "./constants";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
+  const pathname = usePathname();
 
   const handleClick = () => {
     setClick(!click);
@@ -17,8 +20,6 @@ const Navbar = () => {
   const closeMobileMenu = () => {
     setClick(false);
   };
-  
-  const liClassName = `nav-links` + (isActive ? ` activated` : ``);
 
   return (
     <IconContext.Provider value={{ color: `#fff` }}>
@@ -32,21 +33,18 @@ const Navbar = () => {
             {click ? <FaTimes /> : <FaBars />}
           </div>
           <ul className={click ? `nav-menu active` : `nav-menu`}>
-            <li className={liClassName}>
-              <Link href="/" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className={liClassName}>
-              <Link href="/charts" onClick={closeMobileMenu}>
-                Charts
-              </Link>
-            </li>
-            <li className={liClassName}>
-              <Link href="/plcTelegrams" onClick={closeMobileMenu}>
-                PLC-Telegrams
-              </Link>
-            </li>
+            {navItems.map(({ label, href }) => {
+              const isActive = pathname === href;
+              const liClassName = `nav-links` + (isActive ? ` activated` : ``);
+
+              return (
+                <li key={label} className={liClassName}>
+                  <Link href={href} onClick={closeMobileMenu}>
+                    {label}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </nav>
