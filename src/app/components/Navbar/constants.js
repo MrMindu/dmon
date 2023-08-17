@@ -9,6 +9,6 @@ export const navItems = [
   },
   {
     label: 'PLC-Telegrams',
-    href: '/plcTelegrams',
+    href: '/plc-telegrams',
   },
 ];

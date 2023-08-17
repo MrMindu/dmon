@@ -7,7 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import { navItems } from "./constants";
 
 const Navbar = () => {
@@ -38,12 +38,14 @@ const Navbar = () => {
               const liClassName = `nav-links` + (isActive ? ` activated` : ``);
 
               return (
-                <li key={label} className={liClassName}>
+                <li className="nav-item">
                   <Link href={href} onClick={closeMobileMenu}>
-                    {label}
+                    <p key={label} className={liClassName}>
+                      {label}
+                    </p>
                   </Link>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
