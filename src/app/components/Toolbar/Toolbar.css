@@ -1,41 +1,57 @@
-.wrap {
+* {
+  box-sizing: border-box;
+}
+
+.toolbar {
   position: sticky;
   top: 60px;
-  border: 1px solid black;
-}
-
-.styledTable {
-  margin-top: -1px;
-  height: 5%;
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
   background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+  border-top: none;
+  font-family: arial, sans-serif;
+  width: 100%;
 }
 
-.chartButtons {
+.toolbar__inputs {
   display: flex;
-  justify-content: space-evenly;
-}
-
-.tableBorder {
-  /* border: 1px solid #dddddd; */
-  border-top: 0px;
-  text-align: left;
+  flex-wrap: wrap;
+  font-weight: bold;
   padding: 6px;
 }
 
-tr.tableBorder:nth-child(even) {
-  background-color: #dddddd;
+.toolbar__inputs > div {
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.toolbar__buttons {
+}
+
+input[type=date], input[type=time] {
+  height: 100%;
+  padding: 3px;
+  border-radius:7px;
+}
+
+select {
+  height: 100%;
+  padding: 3px;
+  border-radius:7px;
+  border: 2px solid black;
 }
 
 .button {
-  background-color: #008CBA;
+  background-color: #008cba;
   border: none;
   color: white;
   padding: 5px 11px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
+  border-radius:7px;
+}
+
+.button:hover {
+  color: black;
 }

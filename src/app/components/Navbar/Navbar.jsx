@@ -38,9 +38,9 @@ const Navbar = () => {
               const liClassName = `nav-links` + (isActive ? ` activated` : ``);
 
               return (
-                <li className="nav-item">
+                <li key={label} className="nav-item">
                   <Link href={href} onClick={closeMobileMenu}>
-                    <p key={label} className={liClassName}>
+                    <p className={liClassName}>
                       {label}
                     </p>
                   </Link>
