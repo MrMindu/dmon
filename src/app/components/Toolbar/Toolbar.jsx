@@ -4,6 +4,7 @@ import exportFromJSON from "export-from-json";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
+import { buttonItems } from "./constants";
 
 import {
   TIMESTAMP_HOUR,
@@ -196,108 +197,137 @@ const Toolbar = ({
     setValues(deletVal);
   };
 
+  const dateTimeItems = [
+    {
+      text: "Date from:",
+      ref: dateFromInputRef,
+      type: "date",
+      id: "dateFrom",
+      name: "dateFrom",
+      className: "toolbar__dateTime",
+    },
+    {
+      text: "Time from:",
+      ref: timeFromInputRef,
+      type: "time",
+      id: "timeFrom",
+      name: "timeFrom",
+      className: "toolbar__dateTime",
+    },
+    {
+      text: "Date to:",
+      ref: dateToInputRef,
+      type: "date",
+      id: "dateTo",
+      name: "dateTo",
+      className: "toolbar__dateTime",
+    },
+    {
+      text: "Time to:",
+      ref: timeToInputRef,
+      type: "time",
+      id: "timeTo",
+      name: "timeTo",
+      className: "toolbar__dateTime",
+    },
+  ];
+
   return (
-    <>
-      <div className="toolbar" onChange={reload}>
-        <div className="toolbar__inputs">
-          <div>
-            Date from:
-            <input
-              ref={dateFromInputRef}
-              type="date"
-              id="dateFrom"
-              name="dateFrom"
-            />
-          </div>
-          <div>
-            Time from:
-            <input
-              ref={timeFromInputRef}
-              type="time"
-              id="timeFrom"
-              name="timeFrom"
-            />
-          </div>
-          <div>
-            Date to:
-            <input ref={dateToInputRef} type="date" id="dateTo" name="dateTo" />
-          </div>
-          <div>
-            Time to:
-            <input ref={timeToInputRef} type="time" id="timeTo" name="timeTo" />
-          </div>
-          <div>
-            Time unit:
-            <select name="timeUnit" id="unitType" size="1">
-              <option value="M">Minute</option>
-              <option value="H">Hour</option>
-              <option value="D">Day</option>
-            </select>
-          </div>
-          <div>
-            Chart Type:
-            <select name="analyzeType" id="type" size="1">
-              <option default value="MP01">
-                TEST-CHART01
-              </option>
-              <option value="MP02">MP02</option>
-            </select>
-          </div>
-        </div>
-        <div className="toolbar__buttons">
-          <div>
-            <input
-              type="submit"
-              size="10"
-              value="Add"
-              className="button"
-              name="add"
-              onClick={handleAdd}
-            />
-            <input
-              type="submit"
-              size="10"
-              value="Delete"
-              className="button"
-              name="delete"
-              onClick={handleDelete}
-            />
-            <input
-              type="submit"
-              size="30"
-              value="Refresh data"
-              className="button"
-              name="refresh"
-              onClick={reload}
-            />
-            <input
-              type="submit"
-              size="30"
-              value="back"
-              className="button"
-              name="date_back"
-              onClick={handleBackClick}
-            />
-            <input
-              type="submit"
-              size="30"
-              value="forward"
-              className="button"
-              name="date_forward"
-              onClick={handleForwardClick}
-            />
-            <input
-              type="submit"
-              size="30"
-              value="Excel Export"
-              className="button"
-              name="excel"
-              onClick={onExportLocal}
-            />
-          </div>
+    <div className="toolbar" onChange={reload}>
+      <div className="toolbar__inputs-wrapper">
+        {dateTimeItems.map(({ text, ref, type, id, name, className }) => {
+          return (
+            <label>
+              {text}
+              <input
+                ref={ref}
+                type={type}
+                id={id}
+                name={name}
+                className={className}
+              ></input>
+            </label>
+          );
+        })} 
+        <label>
+          Time unit:
+          <select
+            className="toolbar__select"
+            name="timeUnit"
+            id="unitType"
+            size="1"
+          >
+            <option value="M">Minute</option>
+            <option value="H">Hour</option>
+            <option value="D">Day</option>
+          </select>
+        </label>
+        <div>
+          Chart Type:
+          <select
+            className="toolbar__select"
+            name="analyzeType"
+            id="type"
+            size="1"
+          >
+            <option default value="MP01">
+              TEST-CHART01
+            </option>
+            <option value="MP02">MP02</option>
+          </select>
         </div>
       </div>
-    </>
+      <label className="toolbar__buttons">
+        <input
+          type="submit"
+          size="10"
+          value="Add"
+          className="button"
+          name="add"
+          onClick={handleAdd}
+        />
+        <input
+          type="submit"
+          size="10"
+          value="Delete"
+          className="button"
+          name="delete"
+          onClick={handleDelete}
+        />
+        <input
+          type="submit"
+          size="30"
+          value="Refresh data"
+          className="button"
+          name="refresh"
+          onClick={reload}
+        />
+        <input
+          type="submit"
+          size="30"
+          value="back"
+          className="button"
+          name="date_back"
+          onClick={handleBackClick}
+        />
+        <input
+          type="submit"
+          size="30"
+          value="forward"
+          className="button"
+          name="date_forward"
+          onClick={handleForwardClick}
+        />
+        <input
+          type="submit"
+          size="30"
+          value="Excel Export"
+          className="button"
+          name="excel"
+          onClick={onExportLocal}
+        />
+      </label>
+    </div>
   );
 };
 

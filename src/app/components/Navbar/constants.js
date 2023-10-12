@@ -12,3 +12,4 @@ export const navItems = [
     href: '/plc-telegrams',
   },
 ];
+
