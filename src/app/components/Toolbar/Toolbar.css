@@ -11,34 +11,35 @@
   border-top: none;
   font-family: arial, sans-serif;
   width: 100%;
-}
 
-.toolbar__inputs-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  font-weight: bold;
-  padding: 0.5rem;
-}
+  .toolbar__inputs-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    font-weight: bold;
+    padding: 0.5rem;
 
-input.toolbar__dateTime, select.toolbar__select {
-    height: 100%;
-    padding: 0.05rem;
-    border-radius: 0.5rem;
-    border: 2px solid black;
-}
+    .toolbar__date-time,
+    .toolbar__select {
+      height: 100%;
+      padding: 0.05rem;
+      border-radius: 0.5rem;
+      border: 2px solid black;
+    }
+  }
 
-.button {
-  background-color: #008cba;
-  border: none;
-  color: white;
-  padding: 5px 11px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius:7px;
-}
+  .toolbar__button {
+    background-color: #008cba;
+    border: none;
+    color: white;
+    padding: 5px 11px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 7px;
+  }
 
-.button:hover {
-  color: black;
+  .toolbar__button:hover {
+    color: black;
+  }
 }

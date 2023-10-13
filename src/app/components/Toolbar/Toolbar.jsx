@@ -4,7 +4,6 @@ import exportFromJSON from "export-from-json";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { buttonItems } from "./constants";
 
 import {
   TIMESTAMP_HOUR,
@@ -203,52 +202,77 @@ const Toolbar = ({
       ref: dateFromInputRef,
       type: "date",
       id: "dateFrom",
-      name: "dateFrom",
-      className: "toolbar__dateTime",
     },
     {
       text: "Time from:",
       ref: timeFromInputRef,
       type: "time",
       id: "timeFrom",
-      name: "timeFrom",
-      className: "toolbar__dateTime",
     },
     {
       text: "Date to:",
       ref: dateToInputRef,
       type: "date",
       id: "dateTo",
-      name: "dateTo",
-      className: "toolbar__dateTime",
     },
     {
       text: "Time to:",
       ref: timeToInputRef,
       type: "time",
       id: "timeTo",
-      name: "timeTo",
-      className: "toolbar__dateTime",
+    },
+  ];
+
+  const buttonItems = [
+    {
+      value: "Add",
+      name: "add",
+      onClick: handleAdd,
+    },
+    {
+      value: "Delete",
+      name: "delete",
+      onClick: handleDelete,
+    },
+    {
+      value: "Refresh data",
+      name: "refresh",
+      onClick: reload,
+    },
+    {
+      value: "Back",
+      name: "date_back",
+      onClick: handleBackClick,
+    },
+    {
+      value: "Forward",
+      name: "date_forward",
+      onClick: handleForwardClick,
+    },
+    {
+      value: "Excel Export",
+      name: "excel",
+      onClick: onExportLocal,
     },
   ];
 
   return (
     <div className="toolbar" onChange={reload}>
       <div className="toolbar__inputs-wrapper">
-        {dateTimeItems.map(({ text, ref, type, id, name, className }) => {
+        {dateTimeItems.map(({ text, ref, type, id }) => {
           return (
-            <label>
+            <label key={id}>
               {text}
               <input
                 ref={ref}
                 type={type}
                 id={id}
-                name={name}
-                className={className}
+                name={id}
+                className="toolbar__date-time"
               ></input>
             </label>
           );
-        })} 
+        })}
         <label>
           Time unit:
           <select
@@ -277,55 +301,23 @@ const Toolbar = ({
           </select>
         </div>
       </div>
-      <label className="toolbar__buttons">
-        <input
-          type="submit"
-          size="10"
-          value="Add"
-          className="button"
-          name="add"
-          onClick={handleAdd}
-        />
-        <input
-          type="submit"
-          size="10"
-          value="Delete"
-          className="button"
-          name="delete"
-          onClick={handleDelete}
-        />
-        <input
-          type="submit"
-          size="30"
-          value="Refresh data"
-          className="button"
-          name="refresh"
-          onClick={reload}
-        />
-        <input
-          type="submit"
-          size="30"
-          value="back"
-          className="button"
-          name="date_back"
-          onClick={handleBackClick}
-        />
-        <input
-          type="submit"
-          size="30"
-          value="forward"
-          className="button"
-          name="date_forward"
-          onClick={handleForwardClick}
-        />
-        <input
-          type="submit"
-          size="30"
-          value="Excel Export"
-          className="button"
-          name="excel"
-          onClick={onExportLocal}
-        />
+      <label
+        key="toolbar__buttons-wrapper"
+        className="toolbar__buttons-wrapper"
+      >
+        {buttonItems.map(({ value, name, onClick }) => {
+          return (
+            <label key={name}>
+              <input
+                type="submit"
+                value={value}
+                name={name}
+                className="toolbar__button"
+                onClick={onClick}
+              ></input>
+            </label>
+          );
+        })}
       </label>
     </div>
   );
