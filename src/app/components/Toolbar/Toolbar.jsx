@@ -196,130 +196,130 @@ const Toolbar = ({
     setValues(deletVal);
   };
 
+  const dateTimeItems = [
+    {
+      text: "Date from:",
+      ref: dateFromInputRef,
+      type: "date",
+      id: "dateFrom",
+    },
+    {
+      text: "Time from:",
+      ref: timeFromInputRef,
+      type: "time",
+      id: "timeFrom",
+    },
+    {
+      text: "Date to:",
+      ref: dateToInputRef,
+      type: "date",
+      id: "dateTo",
+    },
+    {
+      text: "Time to:",
+      ref: timeToInputRef,
+      type: "time",
+      id: "timeTo",
+    },
+  ];
+
+  const buttonItems = [
+    {
+      value: "Add",
+      name: "add",
+      onClick: handleAdd,
+    },
+    {
+      value: "Delete",
+      name: "delete",
+      onClick: handleDelete,
+    },
+    {
+      value: "Refresh data",
+      name: "refresh",
+      onClick: reload,
+    },
+    {
+      value: "Back",
+      name: "date_back",
+      onClick: handleBackClick,
+    },
+    {
+      value: "Forward",
+      name: "date_forward",
+      onClick: handleForwardClick,
+    },
+    {
+      value: "Excel Export",
+      name: "excel",
+      onClick: onExportLocal,
+    },
+  ];
+
   return (
-    <>
-      <div className="wrap">
-        <table className="styledTable" onChange={reload}>
-          <tbody>
-            <tr className="tableBorder">
-              <th className="tableBorder">
-                Date from:
-                <input
-                  ref={dateFromInputRef}
-                  type="date"
-                  size="10"
-                  id="dateFrom"
-                  name="dateFrom"
-                />
-              </th>
-              <th className="tableBorder" id="timeFromContainer">
-                Time from:
-                <input
-                  ref={timeFromInputRef}
-                  type="time"
-                  size="10"
-                  id="timeFrom"
-                  name="timeFrom"
-                />
-              </th>
-              <th className="tableBorder">
-                Date to:
-                <input
-                  ref={dateToInputRef}
-                  type="date"
-                  size="10"
-                  id="dateTo"
-                  name="dateTo"
-                />
-              </th>
-              <th className="tableBorder" id="timeToContainer">
-                Time to:
-                <input
-                  ref={timeToInputRef}
-                  type="time"
-                  size="10"
-                  id="timeTo"
-                  name="timeTo"
-                />
-              </th>
-              <th>
-                Time unit:
-                <select
-                  name="timeUnit"
-                  id="unitType"
-                  size="1"
-                >
-                  <option value="M">Minute</option>
-                  <option value="H">Hour</option>
-                  <option value="D">Day</option>
-                </select>
-              </th>
-              <th>
-                Chart Type:
-                <select name="analyzeType" id="type" size="1">
-                  <option default value="MP01">
-                    TEST-CHART01
-                  </option>
-                  <option value="MP02">MP02</option>
-                </select>
-              </th>
-            </tr>
-            <tr>
-              <th className="chartButtons">
-                <input
-                  type="submit"
-                  size="10"
-                  value="Add"
-                  className="button"
-                  name="add"
-                  onClick={handleAdd}
-                />
-                <input
-                  type="submit"
-                  size="10"
-                  value="Delete"
-                  className="button"
-                  name="delete"
-                  onClick={handleDelete}
-                />
-                <input
-                  type="submit"
-                  size="30"
-                  value="Refresh data"
-                  className="button"
-                  name="refresh"
-                  onClick={reload}
-                />
-                <input
-                  type="submit"
-                  size="30"
-                  value="back"
-                  className="button"
-                  name="date_back"
-                  onClick={handleBackClick}
-                />
-                <input
-                  type="submit"
-                  size="30"
-                  value="forward"
-                  className="button"
-                  name="date_forward"
-                  onClick={handleForwardClick}
-                />
-                <input
-                  type="submit"
-                  size="30"
-                  value="Excel Export"
-                  className="button"
-                  name="excel"
-                  onClick={onExportLocal}
-                />
-              </th>
-            </tr>
-          </tbody>
-        </table>
+    <div className="toolbar" onChange={reload}>
+      <div className="toolbar__inputs-wrapper">
+        {dateTimeItems.map(({ text, ref, type, id }) => {
+          return (
+            <label key={id}>
+              {text}
+              <input
+                ref={ref}
+                type={type}
+                id={id}
+                name={id}
+                className="toolbar__date-time"
+              ></input>
+            </label>
+          );
+        })}
+        <label>
+          Time unit:
+          <select
+            className="toolbar__select"
+            name="timeUnit"
+            id="unitType"
+            size="1"
+          >
+            <option value="M">Minute</option>
+            <option value="H">Hour</option>
+            <option value="D">Day</option>
+          </select>
+        </label>
+        <div>
+          Chart Type:
+          <select
+            className="toolbar__select"
+            name="analyzeType"
+            id="type"
+            size="1"
+          >
+            <option default value="MP01">
+              TEST-CHART01
+            </option>
+            <option value="MP02">MP02</option>
+          </select>
+        </div>
       </div>
-    </>
+      <label
+        key="toolbar__buttons-wrapper"
+        className="toolbar__buttons-wrapper"
+      >
+        {buttonItems.map(({ value, name, onClick }) => {
+          return (
+            <label key={name}>
+              <input
+                type="submit"
+                value={value}
+                name={name}
+                className="toolbar__button"
+                onClick={onClick}
+              ></input>
+            </label>
+          );
+        })}
+      </label>
+    </div>
   );
 };
 

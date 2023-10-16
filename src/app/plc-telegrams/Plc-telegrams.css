@@ -1,0 +1,32 @@
+.plc-telegrams {
+  .plc-telegrams__thead {
+    background-color: #eeca00;
+    th {
+      padding: 0.5rem;
+      text-align: left;
+      border: 1px solid black;
+    }
+  }
+
+  .plc-telegrams__tbody {
+    tr:nth-child(odd) {
+      background-color: #fafafa;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e2eafd;
+    }
+
+    td {
+      padding: 0.5rem;
+      text-align: left;
+      /* border: 1px solid #ddd; */
+    }
+    tr:hover {
+      background-color: lightgrey;
+    }
+    td:hover {
+      background-color: #eeca00;
+    }
+  }
+}
