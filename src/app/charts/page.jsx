@@ -1,7 +1,5 @@
 "use client";
 
-import "./Chart.css";
-
 import moment from "moment";
 import React from "react";
 import { useEffect, useState } from "react";

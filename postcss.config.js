@@ -1,18 +1,15 @@
 module.exports = {
-  plugins: [
-    // "postcss-nested",
-    // "autoprefixer",
-    [
-      "postcss-preset-env",
-      {
-        autoprefixer: {
-          flexbox: "no-2009",
-        },
-        stage: 3,
-        features: {
-          "custom-properties": false,
-        },
+  plugins: {
+    'postcss-flexbugs-fixes': {},
+    'postcss-import': {},
+    'postcss-preset-env': {
+      autoprefixer: {
+        flexbox: 'no-2009',
       },
-    ],
-  ],
-};
+      stage: 1,
+      features: {
+        'custom-properties': false,
+      },
+    },
+  },
+}

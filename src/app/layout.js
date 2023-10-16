@@ -1,7 +1,7 @@
 "use client"
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import "./globals.css";
+import "../../public/global.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });

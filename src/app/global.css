@@ -1,0 +1,6 @@
+@import 'charts/Chart.css';
+
+@import 'components/Toolbar/Toolbar.css';
+@import 'components/Navbar/Navbar.css';
+
+@import 'plc-telegrams/Plc-telegrams.css';

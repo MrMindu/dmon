@@ -1,4 +1,4 @@
-.telegrams-table {
+/* .telegrams-table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 .telegrams-table thead tr {
-  background-color: #eeca00;;
+  background-color: #ffb517;;
   color: black;
   text-align: left;
 }
@@ -27,10 +27,44 @@
 }
 
 .telegrams-table tbody tr:last-of-type {
-  border-bottom: 2px solid #eeca00;;
+  border-bottom: 2px solid #ffb517;;
 }
 
 .telegrams-table tbody tr:hover {
   font-weight: bold;
-  color: #eeca00;;
+  color: #ffb517;;
+} */
+
+.telegrams-table {
+  .telegrams__thead {
+    background-color: #ffb517;
+    
+    th {
+      padding: 0.5rem;
+      text-align: left;
+      border: 1px solid black;
+    }
+  }
+
+  .telegrams__tbody {
+    tr:nth-child(odd) {
+      background-color: #fafafa;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e2eafd;
+    }
+
+    td {
+      padding: 0.5rem;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    tr:hover {
+      background-color: lightgrey;
+    }
+    td:hover {
+      background-color: #ffb517;
+    }
+  }
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import "./Navbar.css";
 import React from "react";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";

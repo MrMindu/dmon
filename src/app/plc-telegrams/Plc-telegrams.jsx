@@ -1,12 +1,10 @@
 import React from "react";
-
-import "./Plc-telegrams.css";
 import data from "../data/Telegrams.json";
 
 function PLCTelegrams() {
   return (
     <table className="telegrams-table">
-      <thead >
+      <thead className="telegrams__thead">
         <tr>
           <th>PLC</th>
           <th>Sender</th>
@@ -17,7 +15,7 @@ function PLCTelegrams() {
       </thead>
       <tbody className="telegrams__tbody">
         {data.map((item, index) => (
-          <tr key={index} class="active-row">
+          <tr key={index}>
             <td>{item.PLC}</td>
             <td>{item.TelegramSender}</td>
             <td>{item.Receiver}</td>
