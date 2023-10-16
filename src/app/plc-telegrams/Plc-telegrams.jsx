@@ -5,7 +5,7 @@ import data from "../data/Telegrams.json";
 
 function PLCTelegrams() {
   return (
-    <div className="plc-telegrams">
+    <table className="plc-telegrams">
       <thead className="plc-telegrams__thead">
         <tr>
           <th>PLC</th>
@@ -26,7 +26,7 @@ function PLCTelegrams() {
           </tr>
         ))}
       </tbody>
-    </div>
+    </table>
   );
 }
 
