@@ -1,32 +1,36 @@
-.plc-telegrams {
-  .plc-telegrams__thead {
-    background-color: #eeca00;
-    th {
-      padding: 0.5rem;
-      text-align: left;
-      border: 1px solid black;
-    }
-  }
+.telegrams-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+.telegrams-table thead tr {
+  background-color: #eeca00;;
+  color: black;
+  text-align: left;
+}
 
-  .plc-telegrams__tbody {
-    tr:nth-child(odd) {
-      background-color: #fafafa;
-    }
+.telegrams-table th,
+.telegrams-table td {
+    padding: 12px 15px;
+}
+.telegrams-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
 
-    tr:nth-child(even) {
-      background-color: #e2eafd;
-    }
+.telegrams-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
 
-    td {
-      padding: 0.5rem;
-      text-align: left;
-      /* border: 1px solid #ddd; */
-    }
-    tr:hover {
-      background-color: lightgrey;
-    }
-    td:hover {
-      background-color: #eeca00;
-    }
-  }
+.telegrams-table tbody tr:last-of-type {
+  border-bottom: 2px solid #eeca00;;
+}
+
+.telegrams-table tbody tr:hover {
+  font-weight: bold;
+  color: #eeca00;;
 }
