@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-.toolbar .toolbar__inputs-wrapper {
+.toolbar__inputs-wrapper {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -26,15 +26,15 @@
     padding: 0.5rem;
   }
 
-.toolbar .toolbar__inputs-wrapper .toolbar__date-time,
-    .toolbar .toolbar__inputs-wrapper .toolbar__select {
-      height: 100%;
-      padding: 0.05rem;
-      border-radius: 0.5rem;
-      border: 2px solid black;
-    }
+.toolbar__date-time,
+  .toolbar__select {
+    height: 100%;
+    padding: 0.05rem;
+    border-radius: 0.5rem;
+    border: 2px solid black;
+  }
 
-.toolbar .toolbar__button {
+.toolbar__button {
     background-color: #008cba;
     border: none;
     color: white;
@@ -46,7 +46,7 @@
     border-radius: 7px;
   }
 
-.toolbar .toolbar__button:hover {
+.toolbar__button:hover {
     color: black;
   }
 

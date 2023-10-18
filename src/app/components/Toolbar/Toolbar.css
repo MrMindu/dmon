@@ -8,23 +8,23 @@
   font-family: arial, sans-serif;
   width: 100%;
 
-  .toolbar__inputs-wrapper {
+  &__inputs-wrapper {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     font-weight: bold;
     padding: 0.5rem;
-
-    .toolbar__date-time,
-    .toolbar__select {
-      height: 100%;
-      padding: 0.05rem;
-      border-radius: 0.5rem;
-      border: 2px solid black;
-    }
+  }
+  
+  &__date-time,
+  &__select {
+    height: 100%;
+    padding: 0.05rem;
+    border-radius: 0.5rem;
+    border: 2px solid black;
   }
 
-  .toolbar__button {
+  &__button {
     background-color: #008cba;
     border: none;
     color: white;
@@ -35,7 +35,7 @@
     border-radius: 7px;
   }
 
-  .toolbar__button:hover {
+  &__button:hover {
     color: black;
   }
 }
