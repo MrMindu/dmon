@@ -43,9 +43,17 @@ const Toolbar = ({
     reloadCharts(values);
   }, [values]);
 
+  useEffect(() => {
+    if (values.length > 0) {
+      if (values[0].includes("")) {
+        setValues([[dateFromState, dateToState, timeFromState, timeToState]]);
+      }
+    }
+  }, [dateFromState, dateToState, timeFromState, timeToState]);
+
   function updateDateTime(sign, miliseconds) {
     const timestampFrom = new Date(
-      dateFromState + ` ` + timeFromState
+      dateFromState + ` ` + timeFromState,
     ).getTime();
     const newTimeFrom = calculateTime(sign, timestampFrom, miliseconds);
 
@@ -78,10 +86,10 @@ const Toolbar = ({
   function changeDateTime(sign) {
     switch (document.getElementById(`unitType`).value) {
       case `D`:
-        eval(`dateTo.setDate(dateTo.getDate()` + sign + `1);`);
-        setDate(`dateTo`, dateTo);
-        eval(`dateFrom.setDate(dateFrom.getDate()` + sign + `1);`);
-        setDate(`dateFrom`, dateFrom);
+        // eval(`dateTo.setDate(dateTo.getDate()` + sign + `1);`);
+        // setDate(`dateTo`, dateTo);
+        // eval(`dateFrom.setDate(dateFrom.getDate()` + sign + `1);`);
+        // setDate(`dateFrom`, dateFrom);
         break;
       case `H`:
         updateDateTime(sign, TIMESTAMP_HOUR);
@@ -116,20 +124,20 @@ const Toolbar = ({
     reload();
   };
 
-  function setDate(tag, date) {
-    const dateElement = document.getElementById(tag);
-    const dateString = moment(date).format(`YYYY-MM-DD`);
-    dateElement.value = dateString;
-  }
+  // function setDate(tag, date) {
+  //   const dateElement = document.getElementById(tag);
+  //   const dateString = moment(date).format(`YYYY-MM-DD`);
+  //   dateElement.value = dateString;
+  // }
 
-  function setTime(tag, date) {
-    const timeElement = document.getElementById(tag);
-    let timeString = ``;
-    timeString = tag.includes(`To`)
-      ? moment(date).format(`HH:mm`)
-      : moment(date).subtract(1, `hour`).format(`HH:mm`);
-    timeElement.value = timeString;
-  }
+  // function setTime(tag, date) {
+  //   const timeElement = document.getElementById(tag);
+  //   let timeString = ``;
+  //   timeString = tag.includes(`To`)
+  //     ? moment(date).format(`HH:mm`)
+  //     : moment(date).subtract(1, `hour`).format(`HH:mm`);
+  //   timeElement.value = timeString;
+  // }
 
   const onExportLocal = () => {
     const fileName = `testing`;
@@ -153,6 +161,7 @@ const Toolbar = ({
 
   function handleDateFromChange(e) {
     setDateFrom(e.target.value);
+    console.log(dateFromState, ":dateFromState");
   }
   function handleDateToChange(e) {
     setDateTo(e.target.value);
@@ -231,7 +240,7 @@ const Toolbar = ({
   return (
     <div className="toolbar" onChange={reload}>
       <div className="toolbar__inputs-wrapper">
-        {dateTimeItems.map(({ text, ref, type, value, id, onChange }) => {
+        {dateTimeItems.map(({ text, type, value, id, onChange }) => {
           return (
             <label key={id}>
               {text}

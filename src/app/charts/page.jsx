@@ -12,29 +12,31 @@ export const DateTimeContext = createContext();
 
 export default function Charts() {
   const [chartData, setChartData] = useState([]);
-  const [dateFromState, setDateFrom] = useState();
-  const [dateToState, setDateTo] = useState();
-  const [timeFromState, setTimeFrom] = useState();
-  const [timeToState, setTimeTo] = useState();
+  const [dateFromState, setDateFrom] = useState('');
+  const [dateToState, setDateTo] = useState('');
+  const [timeFromState, setTimeFrom] = useState('');
+  const [timeToState, setTimeTo] = useState('');
   const [toolbarIndex, setToolbarIndex] = useState(0);
   const [array, setArray] = useState([]);
 
   const prepareChartData = (dateFrom, dateTo, timeFrom, timeTo) => {
-    if (!dateFrom || !dateTo || !timeFrom || !timeTo) {
-      return null;
-    }
+    // if (!dateFrom || !dateTo || !timeFrom || !timeTo) {
+    //   return null;
+    // }
 
     const fromTimestamp =
-      moment(dateFrom).format(`YYYYMMDD`) +
-      timeFrom.value.replace(`:`, ``) +
+      moment(new Date(dateFromState)).format(`YYYYMMDD`) +
+      timeFromState.replace(`:`, ``) +
       `00`;
     const toTimestamp =
-      moment(dateTo).format(`YYYYMMDD`) + timeTo.value.replace(`:`, ``) + `00`;
+      moment(new Date(dateToState)).format(`YYYYMMDD`) + timeToState.replace(`:`, ``) + `00`;
     const usedData = ChartDataJson.filter(
       (item) =>
         item.Timestamp >= fromTimestamp && item.Timestamp <= toTimestamp && item
     );
 
+    console.log(`prepareChartData Start:`);
+    console.log(dateFromState, dateToState, timeFromState, timeToState);
     setChartData([
       ...chartData,
       {
@@ -71,7 +73,9 @@ export default function Charts() {
   };
 
   useEffect(() => {
-    prepareChartData(dateFrom, dateTo, timeFrom, timeTo);
+    prepareChartData(dateFromState, dateToState, timeFromState, timeToState);
+    console.log(`useEffect:`);
+    console.log(dateFromState);
   }, []);
 
   const reloadCharts = (toolbarArray) => {
