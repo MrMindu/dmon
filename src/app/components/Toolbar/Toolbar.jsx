@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { DateTimeContext } from "@/app/charts/page";
 
 import {
+  TIMESTAMP_DAY,
   TIMESTAMP_HOUR,
   TIMESTAMP_MINUTE,
 } from "../../constants/timestampValues";
@@ -18,6 +19,7 @@ const Toolbar = ({
   prepareChartData,
 }) => {
   const [values, setValues] = useState([]);
+  const [unitType, setUnitType] = useState([]);
   const {
     dateFromState,
     setDateFrom,
@@ -34,8 +36,7 @@ const Toolbar = ({
     setDateTo(moment(new Date(`2023/07/18 15:10:00`)).format(`YYYY-MM-DD`));
     setTimeFrom(moment(new Date(`2023/07/18 14:10:00`)).format(`HH:mm`));
     setTimeTo(moment(new Date(`2023/07/18 15:10:00`)).format(`HH:mm`));
-
-    setValues([[dateFromState, dateToState, timeFromState, timeToState]]);
+    setUnitType("M");
   }, []);
 
   useEffect(() => {
@@ -44,11 +45,8 @@ const Toolbar = ({
   }, [values]);
 
   useEffect(() => {
-    if (values.length > 0) {
-      if (values[0].includes("")) {
-        setValues([[dateFromState, dateToState, timeFromState, timeToState]]);
-      }
-    }
+    if (values.length > 0) reload();
+    else setValues([[dateFromState, dateToState, timeFromState, timeToState]]);
   }, [dateFromState, dateToState, timeFromState, timeToState]);
 
   function updateDateTime(sign, miliseconds) {
@@ -84,12 +82,9 @@ const Toolbar = ({
   }
 
   function changeDateTime(sign) {
-    switch (document.getElementById(`unitType`).value) {
+    switch (unitType) {
       case `D`:
-        // eval(`dateTo.setDate(dateTo.getDate()` + sign + `1);`);
-        // setDate(`dateTo`, dateTo);
-        // eval(`dateFrom.setDate(dateFrom.getDate()` + sign + `1);`);
-        // setDate(`dateFrom`, dateFrom);
+        updateDateTime(sign, TIMESTAMP_DAY);
         break;
       case `H`:
         updateDateTime(sign, TIMESTAMP_HOUR);
@@ -111,34 +106,16 @@ const Toolbar = ({
       // otherwise return the object as is
       return obj;
     });
-
     setValues(newState);
   };
 
   const handleBackClick = () => {
     changeDateTime(`-`);
-    reload();
   };
   const handleForwardClick = () => {
     changeDateTime(`+`);
-    reload();
   };
-
-  // function setDate(tag, date) {
-  //   const dateElement = document.getElementById(tag);
-  //   const dateString = moment(date).format(`YYYY-MM-DD`);
-  //   dateElement.value = dateString;
-  // }
-
-  // function setTime(tag, date) {
-  //   const timeElement = document.getElementById(tag);
-  //   let timeString = ``;
-  //   timeString = tag.includes(`To`)
-  //     ? moment(date).format(`HH:mm`)
-  //     : moment(date).subtract(1, `hour`).format(`HH:mm`);
-  //   timeElement.value = timeString;
-  // }
-
+  
   const onExportLocal = () => {
     const fileName = `testing`;
     const exportType = exportFromJSON.types.csv;
@@ -161,7 +138,6 @@ const Toolbar = ({
 
   function handleDateFromChange(e) {
     setDateFrom(e.target.value);
-    console.log(dateFromState, ":dateFromState");
   }
   function handleDateToChange(e) {
     setDateTo(e.target.value);
@@ -171,6 +147,9 @@ const Toolbar = ({
   }
   function handleTimeToChange(e) {
     setTimeTo(e.target.value);
+  }
+  function handleUnitTypeChange(e) {
+    setUnitType(e.target.value);
   }
 
   const dateTimeItems = [
@@ -260,6 +239,8 @@ const Toolbar = ({
           <select
             className="toolbar__select"
             name="timeUnit"
+            value={unitType}
+            onChange={handleUnitTypeChange}
             id="unitType"
             size="1"
           >

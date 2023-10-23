@@ -12,10 +12,10 @@ export const DateTimeContext = createContext();
 
 export default function Charts() {
   const [chartData, setChartData] = useState([]);
-  const [dateFromState, setDateFrom] = useState('');
-  const [dateToState, setDateTo] = useState('');
-  const [timeFromState, setTimeFrom] = useState('');
-  const [timeToState, setTimeTo] = useState('');
+  const [dateFromState, setDateFrom] = useState("");
+  const [dateToState, setDateTo] = useState("");
+  const [timeFromState, setTimeFrom] = useState("");
+  const [timeToState, setTimeTo] = useState("");
   const [toolbarIndex, setToolbarIndex] = useState(0);
   const [array, setArray] = useState([]);
 
@@ -29,10 +29,14 @@ export default function Charts() {
       timeFromState.replace(`:`, ``) +
       `00`;
     const toTimestamp =
-      moment(new Date(dateToState)).format(`YYYYMMDD`) + timeToState.replace(`:`, ``) + `00`;
+      moment(new Date(dateToState)).format(`YYYYMMDD`) +
+      timeToState.replace(`:`, ``) +
+      `00`;
     const usedData = ChartDataJson.filter(
       (item) =>
-        item.Timestamp >= fromTimestamp && item.Timestamp <= toTimestamp && item
+        item.Timestamp >= fromTimestamp &&
+        item.Timestamp <= toTimestamp &&
+        item,
     );
 
     console.log(`prepareChartData Start:`);
@@ -44,7 +48,7 @@ export default function Charts() {
           (data) =>
             String(data.Timestamp).substring(8, 10) +
             `:` +
-            String(data.Timestamp).substring(10, 12)
+            String(data.Timestamp).substring(10, 12),
         ),
         datasets: [
           {
@@ -74,14 +78,12 @@ export default function Charts() {
 
   useEffect(() => {
     prepareChartData(dateFromState, dateToState, timeFromState, timeToState);
-    console.log(`useEffect:`);
-    console.log(dateFromState);
   }, []);
 
   const reloadCharts = (toolbarArray) => {
     let newState = [...chartData];
 
-    toolbarArray.forEach((element, index) => {
+    toolbarArray.map((element, index) => {
       const fromTimestamp =
         moment(element[0])?.format(`YYYYMMDD`) +
         element[2]?.replace(`:`, ``) +
@@ -92,7 +94,7 @@ export default function Charts() {
         `00`;
       const usedData = ChartDataJson.filter(
         (item) =>
-          item.Timestamp >= fromTimestamp && item.Timestamp <= toTimestamp
+          item.Timestamp >= fromTimestamp && item.Timestamp <= toTimestamp,
       );
 
       newState = newState.map((obj, i) => {
@@ -102,7 +104,7 @@ export default function Charts() {
               (data) =>
                 String(data.Timestamp).substring(8, 10) +
                 `:` +
-                String(data.Timestamp).substring(10, 12)
+                String(data.Timestamp).substring(10, 12),
             ),
             datasets: [
               {
