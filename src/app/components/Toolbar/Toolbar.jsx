@@ -1,9 +1,11 @@
 import exportFromJSON from "export-from-json";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRef } from "react";
+import { DateTimeContext } from "@/app/charts/page";
 
 import {
+  TIMESTAMP_DAY,
   TIMESTAMP_HOUR,
   TIMESTAMP_MINUTE,
 } from "../../constants/timestampValues";
@@ -17,30 +19,24 @@ const Toolbar = ({
   prepareChartData,
 }) => {
   const [values, setValues] = useState([]);
-  const dateFromInputRef = useRef(null);
-  const dateToInputRef = useRef(null);
-  const timeFromInputRef = useRef(null);
-  const timeToInputRef = useRef(null);
-
-  const dateFromInputValue = dateFromInputRef.current?.value || 0;
-  const dateToInputValue = dateToInputRef.current?.value || 0;
-  const timeFromInputValue = timeFromInputRef.current?.value || 0;
-  const timeToInputValue = timeToInputRef.current?.value || 0;
+  const [unitType, setUnitType] = useState([]);
+  const {
+    dateFromState,
+    setDateFrom,
+    dateToState,
+    setDateTo,
+    timeFromState,
+    setTimeFrom,
+    timeToState,
+    setTimeTo,
+  } = useContext(DateTimeContext);
 
   useEffect(() => {
-    setDate(`dateFrom`, new Date(`2023/07/18 15:10:00`));
-    setDate(`dateTo`, new Date(`2023/07/18 15:10:00`));
-    setTime(`timeFrom`, new Date(`2023/07/18 15:10:00`));
-    setTime(`timeTo`, new Date(`2023/07/18 15:10:00`));
-
-    setValues([
-      [
-        dateFromInputRef.current?.value,
-        dateToInputRef.current?.value,
-        timeFromInputRef.current?.value,
-        timeToInputRef.current?.value,
-      ],
-    ]);
+    setDateFrom(moment(new Date(`2023/07/18 15:10:00`)).format(`YYYY-MM-DD`));
+    setDateTo(moment(new Date(`2023/07/18 15:10:00`)).format(`YYYY-MM-DD`));
+    setTimeFrom(moment(new Date(`2023/07/18 14:10:00`)).format(`HH:mm`));
+    setTimeTo(moment(new Date(`2023/07/18 15:10:00`)).format(`HH:mm`));
+    setUnitType("M");
   }, []);
 
   useEffect(() => {
@@ -48,24 +44,34 @@ const Toolbar = ({
     reloadCharts(values);
   }, [values]);
 
-  function getNewTime(tag, time, sign, miliseconds) {
-    const dateElement = document.getElementById(tag);
+  useEffect(() => {
+    if (values.length > 0) reload();
+    else setValues([[dateFromState, dateToState, timeFromState, timeToState]]);
+  }, [dateFromState, dateToState, timeFromState, timeToState]);
 
-    if (!dateElement) {
-      return null;
-    }
+  function updateDateTime(sign, miliseconds) {
+    const timestampFrom = new Date(
+      dateFromState + ` ` + timeFromState,
+    ).getTime();
+    const newTimeFrom = calculateTime(sign, timestampFrom, miliseconds);
 
-    const timestamp = new Date(dateElement.value + ` ` + time).getTime();
-    const newTime = calculateTime(sign, timestamp, miliseconds);
+    const timestampTo = new Date(dateToState + ` ` + timeToState).getTime();
+    const newTimeTo = calculateTime(sign, timestampTo, miliseconds);
 
-    dateElement.value = moment(new Date(newTime)).format(`YYYY-MM-DD`);
+    setDateFrom(moment(new Date(newTimeFrom)).format(`YYYY-MM-DD`));
+    setDateTo(moment(new Date(newTimeTo)).format(`YYYY-MM-DD`));
 
-    let hours = new Date(newTime).toLocaleTimeString([], {
+    setTimeFrom(getNewTime(newTimeFrom));
+    setTimeTo(getNewTime(newTimeTo));
+  }
+
+  function getNewTime(time) {
+    let hours = new Date(time).toLocaleTimeString([], {
       hour: `2-digit`,
       hour12: false,
     });
 
-    let mins = new Date(newTime).toLocaleTimeString([], {
+    let mins = new Date(time).toLocaleTimeString([], {
       minute: `2-digit`,
       hour12: false,
     });
@@ -76,45 +82,15 @@ const Toolbar = ({
   }
 
   function changeDateTime(sign) {
-    const dateFrom = new Date(dateFromInputValue);
-    const dateTo = new Date(dateToInputValue);
-    const timeFromElement = timeFromInputRef?.current;
-    const timeToElement = timeToInputRef?.current;
-
-    switch (document.getElementById(`unitType`).value) {
+    switch (unitType) {
       case `D`:
-        eval(`dateTo.setDate(dateTo.getDate()` + sign + `1);`);
-        setDate(`dateTo`, dateTo);
-        eval(`dateFrom.setDate(dateFrom.getDate()` + sign + `1);`);
-        setDate(`dateFrom`, dateFrom);
+        updateDateTime(sign, TIMESTAMP_DAY);
         break;
       case `H`:
-        timeFromElement.value = getNewTime(
-          `dateFrom`,
-          timeFromInputValue,
-          sign,
-          TIMESTAMP_HOUR,
-        );
-        timeToElement.value = getNewTime(
-          `dateTo`,
-          timeToInputValue,
-          sign,
-          TIMESTAMP_HOUR,
-        );
+        updateDateTime(sign, TIMESTAMP_HOUR);
         break;
       case `M`:
-        timeFromElement.value = getNewTime(
-          `dateFrom`,
-          timeFromInputValue,
-          sign,
-          TIMESTAMP_MINUTE,
-        );
-        timeToElement.value = getNewTime(
-          `dateTo`,
-          timeToInputValue,
-          sign,
-          TIMESTAMP_MINUTE,
-        );
+        updateDateTime(sign, TIMESTAMP_MINUTE);
         break;
       default:
         break;
@@ -125,44 +101,20 @@ const Toolbar = ({
     const newState = values.map((obj, i) => {
       // update if index matches
       if (i === toolbarIndex) {
-        return [
-          dateFromInputRef.current?.value,
-          dateToInputRef.current?.value,
-          timeFromInputRef.current?.value,
-          timeToInputRef.current?.value,
-        ];
+        return [dateFromState, dateToState, timeFromState, timeToState];
       }
-
       // otherwise return the object as is
       return obj;
     });
-
     setValues(newState);
   };
 
   const handleBackClick = () => {
     changeDateTime(`-`);
-    reload();
   };
   const handleForwardClick = () => {
     changeDateTime(`+`);
-    reload();
   };
-
-  function setDate(tag, date) {
-    const dateElement = document.getElementById(tag);
-    const dateString = moment(date).format(`YYYY-MM-DD`);
-    dateElement.value = dateString;
-  }
-
-  function setTime(tag, date) {
-    const timeElement = document.getElementById(tag);
-    let timeString = ``;
-    timeString = tag.includes(`To`)
-      ? moment(date).format(`HH:mm`)
-      : moment(date).subtract(1, `hour`).format(`HH:mm`);
-    timeElement.value = timeString;
-  }
 
   const onExportLocal = () => {
     const fileName = `testing`;
@@ -173,19 +125,9 @@ const Toolbar = ({
   const handleAdd = () => {
     setValues([
       ...values,
-      [
-        dateFromInputValue,
-        dateToInputValue,
-        timeFromInputValue,
-        timeToInputValue,
-      ],
+      [dateFromState, dateToState, timeFromState, timeToState],
     ]);
-    prepareChartData(
-      dateFromInputValue,
-      dateToInputValue,
-      timeFromInputValue,
-      timeToInputValue,
-    );
+    prepareChartData();
   };
 
   const handleDelete = () => {
@@ -194,30 +136,50 @@ const Toolbar = ({
     setValues(deletVal);
   };
 
+  function handleDateFromChange(e) {
+    setDateFrom(e.target.value);
+  }
+  function handleDateToChange(e) {
+    setDateTo(e.target.value);
+  }
+  function handleTimeFromChange(e) {
+    setTimeFrom(e.target.value);
+  }
+  function handleTimeToChange(e) {
+    setTimeTo(e.target.value);
+  }
+  function handleUnitTypeChange(e) {
+    setUnitType(e.target.value);
+  }
+
   const dateTimeItems = [
     {
       text: "Date from:",
-      ref: dateFromInputRef,
       type: "date",
       id: "dateFrom",
+      value: dateFromState,
+      onChange: handleDateFromChange,
     },
     {
       text: "Time from:",
-      ref: timeFromInputRef,
       type: "time",
       id: "timeFrom",
+      value: timeFromState,
+      onChange: handleTimeFromChange,
     },
     {
       text: "Date to:",
-      ref: dateToInputRef,
       type: "date",
       id: "dateTo",
+      value: dateToState,
+      onChange: handleDateToChange,
     },
     {
       text: "Time to:",
-      ref: timeToInputRef,
       type: "time",
       id: "timeTo",
+      value: timeToState,
+      onChange: handleTimeToChange,
     },
   ];
 
@@ -257,15 +219,16 @@ const Toolbar = ({
   return (
     <div className="toolbar" onChange={reload}>
       <div className="toolbar__inputs-wrapper">
-        {dateTimeItems.map(({ text, ref, type, id }) => {
+        {dateTimeItems.map(({ text, type, value, id, onChange }) => {
           return (
             <label key={id}>
               {text}
               <input
-                ref={ref}
                 type={type}
                 id={id}
                 name={id}
+                value={value}
+                onChange={onChange}
                 className="toolbar__date-time"
               ></input>
             </label>
@@ -276,6 +239,8 @@ const Toolbar = ({
           <select
             className="toolbar__select"
             name="timeUnit"
+            value={unitType}
+            onChange={handleUnitTypeChange}
             id="unitType"
             size="1"
           >

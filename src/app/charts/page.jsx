@@ -1,27 +1,33 @@
 "use client";
 
 import moment from "moment";
-import React from "react";
+import React, { createContext } from "react";
 import { useEffect, useState } from "react";
 
 import LineChart from "../components/LineChart";
 import Toolbar from "../components/Toolbar";
 import ChartDataJson from "../data/ChartData.json";
 
+export const DateTimeContext = createContext();
+
 export default function Charts() {
   const [chartData, setChartData] = useState([]);
+  const [dateFromState, setDateFrom] = useState("");
+  const [dateToState, setDateTo] = useState("");
+  const [timeFromState, setTimeFrom] = useState("");
+  const [timeToState, setTimeTo] = useState("");
   const [toolbarIndex, setToolbarIndex] = useState(0);
   const [array, setArray] = useState([]);
 
-  const prepareChartData = (dateFrom, dateTo, timeFrom, timeTo) => {
-    if (!dateFrom || !dateTo || !timeFrom || !timeTo) {
-      return null;
-    }
-
+  const prepareChartData = () => {
     const fromTimestamp =
-      moment(dateFrom).format(`YYYYMMDD`) + timeFrom.replace(`:`, ``) + `00`;
+      moment(new Date(dateFromState)).format(`YYYYMMDD`) +
+      timeFromState.replace(`:`, ``) +
+      `00`;
     const toTimestamp =
-      moment(dateTo).format(`YYYYMMDD`) + timeTo.replace(`:`, ``) + `00`;
+      moment(new Date(dateToState)).format(`YYYYMMDD`) +
+      timeToState.replace(`:`, ``) +
+      `00`;
     const usedData = ChartDataJson.filter(
       (item) =>
         item.Timestamp >= fromTimestamp &&
@@ -60,23 +66,16 @@ export default function Charts() {
         ],
       },
     ]);
-    console.log(`prepareChartData:`);
-    console.log(chartData);
   };
 
   useEffect(() => {
-    const dateFrom = new Date(document.getElementById(`dateFrom`).value);
-    const dateTo = new Date(document.getElementById(`dateTo`).value);
-    const timeFrom = document.getElementById(`timeFrom`).value;
-    const timeTo = document.getElementById(`timeTo`).value;
-
-    prepareChartData(dateFrom, dateTo, timeFrom, timeTo);
+    prepareChartData();
   }, []);
 
   const reloadCharts = (toolbarArray) => {
     let newState = [...chartData];
 
-    toolbarArray.forEach((element, index) => {
+    toolbarArray.map((element, index) => {
       const fromTimestamp =
         moment(element[0])?.format(`YYYYMMDD`) +
         element[2]?.replace(`:`, ``) +
@@ -130,15 +129,11 @@ export default function Charts() {
   };
 
   const setToolbarData = (dateFrom, dateTo, timeFrom, timeTo) => {
-    const dateFromEle = document.getElementById(`dateFrom`);
-    const dateToEle = document.getElementById(`dateTo`);
-    const timeFromEle = document.getElementById(`timeFrom`);
-    const timeToEle = document.getElementById(`timeTo`);
-
-    dateFromEle.value = dateFrom;
-    dateToEle.value = dateTo;
-    timeFromEle.value = timeFrom;
-    timeToEle.value = timeTo;
+    setDateFrom(dateFrom);
+    setDateTo(dateTo);
+    setTimeFrom(timeFrom);
+    setTimeTo(timeTo);
+    // console.log(dateFrom, "dateFrom set data")
   };
 
   const handleClick = (data, i) => {
@@ -153,22 +148,35 @@ export default function Charts() {
 
   return (
     <div className="Chart">
-      <Toolbar
-        prepareChartData={prepareChartData}
-        reloadCharts={reloadCharts}
-        handleCallback={handleCallback}
-        toolbarIndex={toolbarIndex}
-      />
-      {array &&
-        array.map((data, index) => (
-          <div
-            key={index}
-            className={`charts`}
-            onClick={() => handleClick(data, index)}
-          >
-            <LineChart chartData={chartData[index]} />
-          </div>
-        ))}
+      <DateTimeContext.Provider
+        value={{
+          dateFromState,
+          setDateFrom,
+          dateToState,
+          setDateTo,
+          timeFromState,
+          setTimeFrom,
+          timeToState,
+          setTimeTo,
+        }}
+      >
+        <Toolbar
+          prepareChartData={prepareChartData}
+          reloadCharts={reloadCharts}
+          handleCallback={handleCallback}
+          toolbarIndex={toolbarIndex}
+        />
+        {array &&
+          array.map((data, index) => (
+            <div
+              key={index}
+              className={`charts`}
+              onClick={() => handleClick(data, index)}
+            >
+              <LineChart chartData={chartData[index]} />
+            </div>
+          ))}
+      </DateTimeContext.Provider>
     </div>
   );
 }
