@@ -19,11 +19,7 @@ export default function Charts() {
   const [toolbarIndex, setToolbarIndex] = useState(0);
   const [array, setArray] = useState([]);
 
-  const prepareChartData = (dateFrom, dateTo, timeFrom, timeTo) => {
-    // if (!dateFrom || !dateTo || !timeFrom || !timeTo) {
-    //   return null;
-    // }
-
+  const prepareChartData = () => {
     const fromTimestamp =
       moment(new Date(dateFromState)).format(`YYYYMMDD`) +
       timeFromState.replace(`:`, ``) +
@@ -39,8 +35,6 @@ export default function Charts() {
         item,
     );
 
-    console.log(`prepareChartData Start:`);
-    console.log(dateFromState, dateToState, timeFromState, timeToState);
     setChartData([
       ...chartData,
       {
@@ -72,12 +66,10 @@ export default function Charts() {
         ],
       },
     ]);
-    console.log(`prepareChartData:`);
-    console.log(chartData);
   };
 
   useEffect(() => {
-    prepareChartData(dateFromState, dateToState, timeFromState, timeToState);
+    prepareChartData();
   }, []);
 
   const reloadCharts = (toolbarArray) => {

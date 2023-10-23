@@ -115,7 +115,7 @@ const Toolbar = ({
   const handleForwardClick = () => {
     changeDateTime(`+`);
   };
-  
+
   const onExportLocal = () => {
     const fileName = `testing`;
     const exportType = exportFromJSON.types.csv;
@@ -127,7 +127,7 @@ const Toolbar = ({
       ...values,
       [dateFromState, dateToState, timeFromState, timeToState],
     ]);
-    prepareChartData(dateFromState, dateToState, timeFromState, timeToState);
+    prepareChartData();
   };
 
   const handleDelete = () => {
